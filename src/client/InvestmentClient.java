@@ -11,9 +11,9 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
+ * Client sends the request to the server and gets the result based on the input provided
  * @author Diana Yamaletdinova
- *
- *         Aug 17, 2017
+ * Aug 17, 2017
  */
 public class InvestmentClient {
 
@@ -22,10 +22,8 @@ public class InvestmentClient {
 		String hostName = "127.0.0.1";
 		// client needs to know the server's port
 		int portNum = 44444;
-
-		// client needs to communicate to the server and send/receive info from
-		// it.
-
+		System.out.println("Client's Program:");
+		
 		// stdIn to read info from the console window
 		// true in PrintWriter flushes the output buffer
 		try (Socket clientSocket = new Socket(hostName, portNum);
@@ -34,7 +32,6 @@ public class InvestmentClient {
 				BufferedReader in = new BufferedReader(ir);
 				BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));) {
 
-			System.out.println("I am a client:");
 			out.println("initialize");// initialized the calculations
 
 			// get the input from the user
@@ -45,17 +42,15 @@ public class InvestmentClient {
 			System.out.println("Great! Enter the rate in format <0.0>: ");
 			out.println(stdIn.readLine());// sends data to server
 
+			// the respond from the server
 			System.out.println("Server says:" + "\n       Investment value is: " + in.readLine()
-					+ "\n       Interest earned is: " + in.readLine());// the
-																		// respond
-																		// from
-																		// the
-																		// server
-
+					+ "\n       Interest earned is: " + in.readLine());
+		
 		} catch (UnknownHostException e) {
 			// if the IP address of the host is not identified
 			System.out.println("Oops, Exiting...");
 			System.exit(1);
+		
 		} catch (IOException e) {
 			System.out.println("Oops, Exiting...");
 			System.exit(1);
